@@ -1,0 +1,41 @@
+SubCircuit	Part	Description	Package	Mouser Ref	Manufacturer	Mfr Ref	Qty	PU (1)	PU (Reel)	Reel Qty
+Led	LEDENGIN1	LZC	MPCB	897-LZC83MC00	LedEngin	LZC-83MC00	1	$37.70	33.410	100
+Led Driver	U1	LM317 Power regulator	SOT-223	595-LM317DCYR	Texas Instruments	LM317DCYR	1	$0.62	0.247	2500
+Led Driver	J1	Power Jack - 2.5mm		806-KLDHCX-0202-BC	KYCON	        KLDHCX-0202-BC	1	$0.89	0.620	1000
+	J1'	Power Jack - 2.5mm		1710-0725	Kobiconn	1710-0725	1	$1.28	0.550	5000
+Led Driver	R1	240 Ohm	1206	660-RK73B2BTTD241J	KOA Speer	RK73B2BTTD241J	1	$0.08	0.009	5000
+Led Driver	R2	390 Ohm	1206	660-RK73B2BTTDD391J	KOA Speer	RK73B2BTTDD391J	1	$0.08	0.008	10000
+Led Driver	C1	0.1uF >50V	1206	81-GRM319F51H104ZA	Murata	GRM319F51H104ZA01D	1	$0.09	0.026	4000
+Led Driver	JP1	0.1" pitch 2x5 connector plastic shoulder		737-BHR-10-VUA	ADAM TECH	BHR-10-VUA	1	$0.28	0.180	1000
+Led Driver	D1	Rectifier Diode 800V 8A	SMC	621-S8KC-13	Diodes Inc	S8KC-13	1	$0.46	0.196	3000
+Led Driver	LED1	Green Led	1206	720-LGN971-KN-1	OSRAM Opto Semicond.	LG N971-KN-1	1	$0.10	0.052	4000
+Led Driver	LED2	Red Led	1206	720-LHN974-KN-1	OSRAM Opto Semicond.	LH N974-KN-1	1	$0.12	0.052	12000
+Led Driver	R9,R10	220 Ohm	1206	660-RK73B2BTTDD221J	KOA Speer	RK73B2BTTDD221J	2	$0.08	0.008	10000
+Led Driver - Chan	IC1,IC3,IC5	LT3518	TSSOP	Buy direct from LINEAR TECH	LINEAR TECHNOLOGY	LT3518	3	$4.43	3.760	100
+Led Driver - Chan	Q1,Q2,Q3	P-MOSFET	SOIC-8 Narrow	512-FDS4685	Fairchild Semi	FDS4685	3	$0.82	0.345	2500
+Led Driver - Chan	D2,D3,D4	Schottky 3A 60V	SMC	863-MBRS360T3G	ON Semiconductor	MBRS360T3G	3	$0.62	0.201	2500
+Led Driver - Chan	L1,L2,L3	15 uH Power Inductance (max sat 2A)		70-IHLP2020CZER150M0	Vishay/Dale	IHLP2020CZER150M01	3	$2.29	1.110	2000
+Led Driver - Chan	R3,R5,R7	Current Sense resistor 143 mOhm 1206	1206	660-SR732BTTER143F	KOA Speer	SR732BTTER143F	3	$0.43	0.250	4000
+Led Driver - Chan	R4,R6,R8	16.9kOhm	1206	660-RK73H2BTTD1692F	KOA Speer	RK73H2BTTD1692F	3	$0.08	0.015	5000
+Led Driver - Chan	C2,C3,C7,C8,C11,C12	0.1uF 10V	1206	810-CGA5L4X7T2W104KS	TDK	CGA5L4X7T2W104K/SOFT	6	$0.27	0.149	2000
+Led Driver - Chan	C4,C6,C10	10uF 50V X5R	1206	810-CGA5L3X5R1H106K	TDK	CGA5L3X5R1H106K	3	$0.57	0.311	2000
+Led Driver - Chan	C5,C9,C13	2.2uF	1206	81-GRM31MF51H225ZA1L  	Murata	GRM31MF51H225ZA01L	3	$0.21	0.070	3000
+Led Driver - Chan	X1,X2,X3	Phoenix Connector 3.5mm 2 contacts		651-1984617	Phoenix Contact	1984617	3	$0.38	0.248	500
+Led Driver	IC2,IC4,IC6	TC1047A	SOT-23B-3	579-TC1047AVNBTR	Microchip Technology	TC1047AVNBTR	3	$0.66	0.470	3000
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+Total Price								74.95	56.6	
