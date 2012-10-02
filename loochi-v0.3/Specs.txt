@@ -1,0 +1,18 @@
+Designing Loochi v0.3
+=====================
+
+So I am starting work on the next prototype and here are the main characteristics I am going to focus on.
+
+Characteristics:
+
+ * Works for different types of LEDs: 10W to 40W at least, more if possible
+ * Wide range of input voltage: min 6v (?) to 20V to drive those LEDs
+ * Wifi card on board
+ * Wifi configurable (???) <= tbd - sdcard? or better, sound jack!
+ * Cheap - cheap - cheap - Should cost less than $60 (including LED) so that we can sell it for 150$
+
+ * The firmware should be easy to upgrade
+   -> USB connection with the bootloader (a little complicated)
+   -> Custom bootloader that uses the RN171 to download firmware - quite complicated too
+   -> Custom bootloader that loads from a SD Card the firmware
+   

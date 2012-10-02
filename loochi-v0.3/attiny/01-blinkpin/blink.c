@@ -7,7 +7,7 @@ int main()
 	
 	while(1) {
 		PORTB |= _BV(PB3);
-		_delay_ms(200);
+		_delay_ms(20);
 		PORTB &= ~_BV(PB3);
 		_delay_ms(200);
 	}
