@@ -55,8 +55,8 @@ OBJDUMP = avr-objdump
 RM = rm -f
 
 
-TARGET=pwmadc
-SRC = main.c adc.c usi.c pwm.c
+TARGET=spislave
+SRC = main.c
 
 ##### Do not edit below this line ######
 

@@ -1,6 +1,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
+
 #include "usi.h"
 #include "pwm.h"
 #include "adc.h"
@@ -56,9 +58,9 @@ ISR(SIG_OUTPUT_COMPARE0A)
 		TCCR1A |= (1 << PWM1B);
 
 		// If we are on and the ADC is available, start a conversion
-//		if ((ADCSRA & (1 << ADSC)) == 0) {
+		if ((ADCSRA & (1 << ADSC)) == 0 && pwm_c > 0x10) {
 			// Wait long enough for the RC network to charge
-		if (pwm_c == 0x10) {
+//		if (pwm_c == 0x26) {
 			ADCSRA |= (1 << ADSC);
 		}
 		
@@ -68,6 +70,23 @@ ISR(SIG_OUTPUT_COMPARE0A)
 		TCCR1A &= ~(1 << PWM1B);
 	}
 }
+
+/* Expected value of ADC for a given value of Ton to get 700mA on the LED
+ * 
+ * The formula is: ADC = 2*Ton/Tperiod*Iled*1024/2.56
+ * Everything is known except Ton.
+ * $ perl -e 'print join(",", map { sprintf "%.0f", (2*$_/0xff*0.7*1024/2.56)} 0..255)'
+ */
+PROGMEM uint16_t ADC_TARGET_VALUES[] = { 
+	0,2,4,7,9,11,13,15,18,20,22,24,26,29,31,33,35,37,40,42,44,46,48,51,53,55,57,59,61,64,66,68,70,72,75,77,79,81,83,86,88,90,92,94,97,99,101,103,105,
+	108,110,112,114,116,119,121,123,125,127,130,132,134,136,138,141,143,145,147,149,152,154,156,158,160,163,165,167,169,171,173,176,178,180,182,184,
+	187,189,191,193,195,198,200,202,204,206,209,211,213,215,217,220,222,224,226,228,231,233,235,237,239,242,244,246,248,250,253,255,257,259,261,264,
+	266,268,270,272,275,277,279,281,283,285,288,290,292,294,296,299,301,303,305,307,310,312,314,316,318,321,323,325,327,329,332,334,336,338,340,343,
+	345,347,349,351,354,356,358,360,362,365,367,369,371,373,376,378,380,382,384,387,389,391,393,395,397,400,402,404,406,408,411,413,415,417,419,422,
+	424,426,428,430,433,435,437,439,441,444,446,448,450,452,455,457,459,461,463,466,468,470,472,474,477,479,481,483,485,488,490,492,494,496,499,501,
+	503,505,507,509,512,514,516,518,520,523,525,527,529,531,534,536,538,540,542,545,547,549,551,553,556,558,560
+};
+#define ADC_TARGET(a) (pgm_read_word_near(ADC_TARGET_VALUES + a)) // CIE Lightness loopup table function
 
 /*
  * This will be called 104 uS after the conversion is started above
@@ -96,19 +115,11 @@ ISR(SIG_ADC)
 	adc = ADCL;
 	adc |= ADCH << 8;
 
-	uint32_t k = (adc*100) / ton;
-	
-	// Adjust the output when we get the result of a conversion
-	// we first test the adc value because when it is too low, dividing does not give good results
-	if (adc < 0x200 && k < 275) {
-		if (ton < 0xFF) {
-			OCR1B = ++ton;
-		}
+	if (adc < ADC_TARGET(ton) && ton < CPWM_MAX) {
+		OCR1B = ++ton;
 	}
-	else {
-		if (ton > 1) {
+	else if (ton > CPWM_MIN) {
 			OCR1B = --ton;
-		}
 	}
 }
 
