@@ -7,7 +7,9 @@ event system_boot(major, minor, patch, build, ll_version, protocol, hw)
 	#set bondable mode
 	call sm_set_bondable_mode(1)	
 	
-	call hardware_spi_transfer(0,3,"\x00\x00\x00")
+	call hardware_spi_transfer(0,1,0)
+	call hardware_spi_transfer(0,1,0)
+	call hardware_spi_transfer(0,1,0)
 	
 	connected = 0
 end
