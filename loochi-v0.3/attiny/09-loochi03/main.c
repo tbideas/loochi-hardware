@@ -57,12 +57,12 @@ int main(void)
 	init_serial();
 
 	/* Initialize global variables */
-	redcpwm = 0x20;
+	redcpwm = 0x00;
 	greencpwm = 0x00;
-	bluecpwm= 0xFf; /* inverted */
+	bluecpwm= 0xFF; /* inverted */
 
 	pwm_c = 0x00;
-	pwm_red =   0x0FF;
+	pwm_red =   0x000;
 	pwm_green = 0x000;
 	pwm_blue =  0x000;
 
