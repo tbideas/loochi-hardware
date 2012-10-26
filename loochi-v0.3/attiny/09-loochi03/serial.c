@@ -55,9 +55,9 @@ void serial_rx_byte(uint8_t byte)
 	usi_buffer[usi_counter++] = byte;
 
 	if (usi_counter == 3) {
-		pwm_red = 2 * usi_buffer[0];
-		pwm_green = 2 * usi_buffer[1];
-		pwm_blue = 2 * usi_buffer[2];
+		pwm_red = usi_buffer[0];
+		pwm_green = usi_buffer[1];
+		pwm_blue = usi_buffer[2];
 		usi_counter = 0;
 	}
 	

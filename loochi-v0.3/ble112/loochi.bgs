@@ -4,6 +4,8 @@ event system_boot(major, minor, patch, build, ll_version, protocol, hw)
 	#set to advertising mode
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
 	
+	# call gap_set_adv_parameters(32,48,7)
+	
 	#set bondable mode
 	call sm_set_bondable_mode(1)	
 	

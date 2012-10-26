@@ -55,7 +55,7 @@
 	<service uuid="4FC10E26-F94A-480F-B1AF-6A2E299B7BF8" advertise="true">
 		<description>Illumi lamp</description>
 		<characteristic uuid="BB4800AD-7F0C-4A59-8176-3316EBB236A7" id="color">
-			<properties write_no_response="true" />
+			<properties write="true" />
 			<value type="hex" length="3"/>
 			<description>Color projected by the lamp</description>
 		</characteristic>

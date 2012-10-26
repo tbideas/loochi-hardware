@@ -2,7 +2,7 @@
 <hardware>
 	<slow_clock enable="false"/>
 	<sleep enable="false"/>
-	<sleeposc enable="false" ppm="30"/>
+	<sleeposc enable="true" ppm="30"/>
 	<!-- <wakeup_pin enable="false" /> -->
 	<txpower power="15" bias="5"/>
 	<!-- pmux -->

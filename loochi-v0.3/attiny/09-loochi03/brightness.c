@@ -17,13 +17,13 @@ uint16_t pwm_blue;
  * Using this double-PWM technique, we can have a constant current running through the LED
  * and still control their brightness.
  *
- * With 8 bit resolution, the total period of the signal is:
+ * Depending on the resolution MaxValue, the total period of the signal is:
  *  T = (32us + x) * MaxValue 
  * Where x is the time needed to execute the interrupt (approximately 9us in 2012/10/01)
  *       MaxValue is BPWM_MAX
  * 
- * With BPWM_MAX = 0x0FF => 10ms ()
- * With BPWM_MAX = 0x1FF => 20ms (47Hz) <----
+ * With BPWM_MAX = 0x0FF => 10ms (100Hz) <---- Measured: 
+ * With BPWM_MAX = 0x1FF => 20ms (47Hz)  <---- Measured: 15.8ms period for 63.29 Hz
  * With BPWM_MAX = 0x3FF => 41ms ()
  *
  * Note: You cant use Timer0 overflow for this because you will be called 

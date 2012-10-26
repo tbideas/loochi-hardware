@@ -3,7 +3,7 @@
 
 /* Brightness PWM min/max and global variables */
 #define BPWM_MIN 0x0000
-#define BPWM_MAX 0x01FF
+#define BPWM_MAX 0x00FF
 
 extern uint16_t pwm_c;
 extern uint16_t pwm_red;
