@@ -1,5 +1,5 @@
 
-
+#include <util/delay.h>
 #include <avr/interrupt.h>
 #include "globals.h"
 #include "adc.h"
@@ -13,7 +13,7 @@ void init_timer0(void);
 
 /* Interrupt vectors */
 
-// Timer0 overflow
+// Timer0 overflow - Every 32us
 ISR(SIG_OVERFLOW0)
 {
 	brightness_pwm_loop();
@@ -72,15 +72,19 @@ int main(void)
 
 	/* Enable interrupts and let the show begin! */
 	sei();
-	
+
 	while(1) {
+		_delay_ms(10);
 		// If button pressed
-		if (PINB & (1 << PB0) == 0) {
-			if (pwm_red == pwm_green == pwm_blue == 0) {
+		if ((PINB & (1 << PB0)) == 0) {
+			if (pwm_red == 0 && pwm_green == 0 && pwm_blue == 0) {
 				pwm_red = pwm_green = pwm_blue = 0xFF;
+				
+				_delay_ms(30);
 			}
 			else {
 				pwm_red = pwm_green = pwm_blue = 0;
+				_delay_ms(30);
 			}
 		}
 	}
