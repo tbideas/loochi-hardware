@@ -16206,7 +16206,6 @@ ITT-Cannon-Cannon</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="C12" library="rcl" deviceset="CPOL-EU" device="D" value="100uF"/>
 <part name="GND32" library="supply1" deviceset="GND" device=""/>
-<part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="J3" library="con-lstb" deviceset="MA05-2" device=""/>
 <part name="C15" library="rcl" deviceset="C-EU" device="C0603" value="100n">
 <attribute name="PARTNO" value="*"/>
@@ -16244,6 +16243,7 @@ ITT-Cannon-Cannon</description>
 <part name="S1" library="AIRcam" deviceset="REKN" device="">
 <attribute name="PARTNO" value="*"/>
 </part>
+<part name="GND18" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -16330,7 +16330,6 @@ ITT-Cannon-Cannon</description>
 <instance part="GND4" gate="1" x="33.02" y="12.7"/>
 <instance part="C12" gate="G$1" x="53.34" y="25.4"/>
 <instance part="GND32" gate="1" x="53.34" y="12.7"/>
-<instance part="GND18" gate="1" x="132.08" y="38.1"/>
 <instance part="J3" gate="G$1" x="167.64" y="50.8" rot="R90"/>
 <instance part="C15" gate="G$1" x="157.48" y="73.66" smashed="yes" rot="MR180">
 <attribute name="NAME" x="149.86" y="78.74" size="1.778" layer="95" rot="MR180"/>
@@ -16375,6 +16374,7 @@ ITT-Cannon-Cannon</description>
 <instance part="S1" gate="G$1" x="132.08" y="20.32">
 <attribute name="PARTNO" x="132.08" y="20.32" size="1.778" layer="96" rot="R270" display="off"/>
 </instance>
+<instance part="GND18" gate="1" x="132.08" y="38.1"/>
 </instances>
 <busses>
 </busses>
@@ -16536,10 +16536,6 @@ ITT-Cannon-Cannon</description>
 <wire x1="33.02" y1="17.78" x2="53.34" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="THERMAL"/>
-<pinref part="GND18" gate="1" pin="GND"/>
-</segment>
-<segment>
 <wire x1="167.64" y1="43.18" x2="167.64" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="167.64" y1="35.56" x2="165.1" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="35.56" x2="162.56" y2="35.56" width="0.1524" layer="91"/>
@@ -16624,6 +16620,10 @@ ITT-Cannon-Cannon</description>
 <pinref part="S1" gate="G$1" pin="0@A"/>
 <wire x1="124.46" y1="20.32" x2="127" y2="20.32" width="0.1524" layer="91"/>
 <junction x="124.46" y="17.78"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="THERMAL"/>
+<pinref part="GND18" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="V+" class="0">
