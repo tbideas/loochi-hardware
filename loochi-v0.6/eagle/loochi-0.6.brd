@@ -22,8 +22,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -1739,19 +1739,15 @@ by exp-project-lbr.ulp</description>
 </class>
 </classes>
 <designrules>
-<description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
+<description language="en">&lt;b&gt;EAGLE Design Rules for *2* Layer Designs (DS)&lt;/b&gt;
 &lt;p&gt;
-Die Standard-Design-Rules sind so gewählt, dass sie für 
-die meisten Anwendungen passen. Sollte ihre Platine 
-besondere Anforderungen haben, treffen Sie die erforderlichen
-Einstellungen hier und speichern die Design Rules unter 
-einem neuen Namen ab.</description>
-<description language="en">&lt;b&gt;Laen's PCB Order Design Rules&lt;/b&gt;
+This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requirements for our double sided products. For questions, comments, suggestions, please contact Sunstone Customer Support: &lt;p&gt;&lt;b&gt;Email:&lt;/b&gt;  mailto:support@sunstone.com&lt;br&gt;&lt;b&gt;Phone:&lt;/b&gt; 800-228-8198.&lt;p&gt; v1.1Mod10/16/07~Layers-core reversal.Distance C/D.Restring%.Supply G%.&lt;p&gt; v1.2 Mod12/06/07~Distance C/D to 20mils.&lt;p&gt;v1.3Mod12/12/07~Supply/Annulus Value to 12.5mils&lt;p&gt;1/15/08 SSC-EAGLE-2Lyr_v1.0.0.3~For Release&lt;p&gt;10/3/08 Description Edit.&lt;p&gt;
+
 &lt;p&gt;
-Please make sure your boards conform to these design rules.</description>
+&lt;i&gt;Attention: Upon running the design check and making modifications, please remember to save any changes before closing the application and sending in your board file to Sunstone Circuits for conversion.&lt;i&gt;</description>
 <param name="layerSetup" value="(1*16)"/>
-<param name="mtCopper" value="0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm"/>
-<param name="mtIsolate" value="1.5011mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm"/>
+<param name="mtCopper" value="0.0178mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0356mm 0.0178mm"/>
+<param name="mtIsolate" value="59mil 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm 0.1499mm 0.2007mm"/>
 <param name="mdWireWire" value="6mil"/>
 <param name="mdWirePad" value="6mil"/>
 <param name="mdWireVia" value="6mil"/>
@@ -1763,12 +1759,12 @@ Please make sure your boards conform to these design rules.</description>
 <param name="mdSmdSmd" value="6mil"/>
 <param name="mdViaViaSameLayer" value="8mil"/>
 <param name="mnLayersViaInSmd" value="2"/>
-<param name="mdCopperDimension" value="15mil"/>
-<param name="mdDrill" value="6mil"/>
+<param name="mdCopperDimension" value="20mil"/>
+<param name="mdDrill" value="16mil"/>
 <param name="mdSmdStop" value="0mil"/>
 <param name="msWidth" value="6mil"/>
-<param name="msDrill" value="13mil"/>
-<param name="msMicroVia" value="13mil"/>
+<param name="msDrill" value="14mil"/>
+<param name="msMicroVia" value="9.9898mm"/>
 <param name="msBlindViaRatio" value="0.5"/>
 <param name="rvPadTop" value="0.25"/>
 <param name="rvPadInner" value="0.25"/>
@@ -1777,20 +1773,20 @@ Please make sure your boards conform to these design rules.</description>
 <param name="rvViaInner" value="0.25"/>
 <param name="rvMicroViaOuter" value="0.25"/>
 <param name="rvMicroViaInner" value="0.25"/>
-<param name="rlMinPadTop" value="7mil"/>
-<param name="rlMaxPadTop" value="20mil"/>
-<param name="rlMinPadInner" value="7mil"/>
-<param name="rlMaxPadInner" value="20mil"/>
-<param name="rlMinPadBottom" value="7mil"/>
-<param name="rlMaxPadBottom" value="20mil"/>
-<param name="rlMinViaOuter" value="7mil"/>
-<param name="rlMaxViaOuter" value="20mil"/>
-<param name="rlMinViaInner" value="7mil"/>
-<param name="rlMaxViaInner" value="20mil"/>
-<param name="rlMinMicroViaOuter" value="4mil"/>
-<param name="rlMaxMicroViaOuter" value="20mil"/>
-<param name="rlMinMicroViaInner" value="4mil"/>
-<param name="rlMaxMicroViaInner" value="20mil"/>
+<param name="rlMinPadTop" value="8mil"/>
+<param name="rlMaxPadTop" value="999mil"/>
+<param name="rlMinPadInner" value="0mil"/>
+<param name="rlMaxPadInner" value="0mil"/>
+<param name="rlMinPadBottom" value="8mil"/>
+<param name="rlMaxPadBottom" value="999mil"/>
+<param name="rlMinViaOuter" value="8mil"/>
+<param name="rlMaxViaOuter" value="999mil"/>
+<param name="rlMinViaInner" value="0mil"/>
+<param name="rlMaxViaInner" value="0mil"/>
+<param name="rlMinMicroViaOuter" value="8mil"/>
+<param name="rlMaxMicroViaOuter" value="999mil"/>
+<param name="rlMinMicroViaInner" value="0mil"/>
+<param name="rlMaxMicroViaInner" value="0mil"/>
 <param name="psTop" value="-1"/>
 <param name="psBottom" value="-1"/>
 <param name="psFirst" value="-1"/>
@@ -1798,8 +1794,8 @@ Please make sure your boards conform to these design rules.</description>
 <param name="psElongationOffset" value="100"/>
 <param name="mvStopFrame" value="1"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="4mil"/>
-<param name="mlMaxStopFrame" value="4mil"/>
+<param name="mlMinStopFrame" value="3mil"/>
+<param name="mlMaxStopFrame" value="3mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
 <param name="mlViaStopLimit" value="0mil"/>
@@ -1811,11 +1807,11 @@ Please make sure your boards conform to these design rules.</description>
 <param name="dpMaxLengthDifference" value="10mm"/>
 <param name="dpGapFactor" value="2.5"/>
 <param name="checkGrid" value="0"/>
-<param name="checkAngle" value="1"/>
+<param name="checkAngle" value="0"/>
 <param name="checkFont" value="1"/>
 <param name="checkRestrict" value="1"/>
 <param name="useDiameter" value="13"/>
-<param name="maxErrors" value="50"/>
+<param name="maxErrors" value="500"/>
 </designrules>
 <autorouter>
 <pass name="Default">
@@ -1911,10 +1907,10 @@ Please make sure your boards conform to these design rules.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="J2" library="power-connectors" package="POWER-KYCONSMT3" value="POWER_JACKSMT3" x="62.48" y="32" smashed="yes" rot="R180">
+<element name="J1" library="power-connectors" package="POWER-KYCONSMT3" value="POWER_JACKSMT3" x="62.48" y="32" smashed="yes" rot="R180">
 <attribute name="NAME" x="55.99" y="36.86" size="0.8128" layer="25"/>
 </element>
-<element name="JP2" library="SparkFun" package="2X3-NS" value="SPI_PRG" x="16.5" y="24.5" smashed="yes" rot="R270">
+<element name="JP1" library="SparkFun" package="2X3-NS" value="SPI_PRG" x="16.5" y="24.5" smashed="yes" rot="R270">
 <attribute name="NAME" x="12.685" y="23.96" size="0.8128" layer="25" ratio="10" rot="R270"/>
 </element>
 <element name="C7" library="rcl" package="C0603" value="0.1uF" x="19" y="31.5" smashed="yes" rot="R180">
@@ -2020,7 +2016,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="9.235" y="22.065" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="C16" library="rcl" package="C0603" value="10nF" x="11" y="13.5" smashed="yes" rot="R270">
-<attribute name="NAME" x="10.465" y="12.065" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="12.465" y="12.065" size="0.8128" layer="25" rot="R90"/>
 </element>
 <element name="C11" library="rcl" package="C0603" value="0.1uF" x="9.5" y="26.5" smashed="yes" rot="R90">
 <attribute name="NAME" x="9.765" y="28.265" size="0.8128" layer="25" rot="R90"/>
@@ -2054,19 +2050,19 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="44.265" y="14.465" size="0.8128" layer="25" rot="R90"/>
 </element>
 <element name="D4" library="diode-schottky" package="D0603" value="DIODE-SCHOTTKYD0603" x="9" y="13.5" smashed="yes" rot="R90">
-<attribute name="NAME" x="8.365" y="12.065" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="8.165" y="12.365" size="0.8128" layer="25" rot="R90"/>
 </element>
 <element name="D5" library="diode-schottky" package="SOD123F" value="PMEG4010CEH" x="4" y="42" smashed="yes" rot="R270">
 <attribute name="NAME" x="2" y="41.5" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="S1" library="buttons" package="CK-KMS_PEGS" value="" x="3.5" y="32"/>
-<element name="JP1" library="SparkFun" package="AVR_ICSP" value="M05X2PTH" x="16.5" y="13" smashed="yes" rot="R180">
+<element name="JP2" library="SparkFun" package="AVR_ICSP" value="M05X2PTH" x="16.5" y="13" smashed="yes" rot="R180">
 <attribute name="NAME" x="12.794" y="9.802" size="0.8128" layer="25" font="vector" rot="R270"/>
 </element>
 </elements>
 <signals>
 <signal name="BUTTON/MOSI">
-<contactref element="JP2" pad="4"/>
+<contactref element="JP1" pad="4"/>
 <contactref element="IC1" pad="30"/>
 <wire x1="13.75" y1="29.65" x2="13.75" y2="29.75" width="0.2" layer="1"/>
 <wire x1="13.75" y1="29.95" x2="13.75" y2="29.65" width="0.2" layer="1"/>
@@ -2094,7 +2090,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="38.85" y1="19.15" x2="38.85" y2="18" width="0.2" layer="1"/>
 </signal>
 <signal name="RESET">
-<contactref element="JP2" pad="5"/>
+<contactref element="JP1" pad="5"/>
 <contactref element="IC1" pad="11"/>
 <wire x1="13.75" y1="34.35" x2="13.75" y2="36.45" width="0.2" layer="1"/>
 <via x="13.7" y="36.5" extent="1-16" drill="0.4"/>
@@ -2109,7 +2105,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="12.3" y1="27.3" x2="12.8" y2="27.8" width="0.2" layer="1"/>
 </signal>
 <signal name="BLE-CS/SCK">
-<contactref element="JP2" pad="3"/>
+<contactref element="JP1" pad="3"/>
 <contactref element="IC1" pad="32"/>
 <contactref element="U1" pad="P0_4"/>
 <wire x1="36.35" y1="18" x2="36.35" y2="19.15" width="0.2" layer="1"/>
@@ -2129,7 +2125,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="GND">
 <contactref element="IC1" pad="5"/>
 <contactref element="IC1" pad="21"/>
-<contactref element="JP2" pad="6"/>
+<contactref element="JP1" pad="6"/>
 <contactref element="R8" pad="1"/>
 <contactref element="R10" pad="1"/>
 <contactref element="C4" pad="2"/>
@@ -2142,8 +2138,8 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="R7" pad="1"/>
 <contactref element="R9" pad="1"/>
 <contactref element="R11" pad="1"/>
-<contactref element="J2" pad="P$3"/>
-<contactref element="J2" pad="P$2"/>
+<contactref element="J1" pad="P$3"/>
+<contactref element="J1" pad="P$2"/>
 <contactref element="C15" pad="-"/>
 <contactref element="U3" pad="2"/>
 <contactref element="U3" pad="2"/>
@@ -2300,7 +2296,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="59" y="34" extent="1-16" drill="1" shape="octagon"/>
 <via x="59" y="30" extent="1-16" drill="1" shape="octagon"/>
 <wire x1="47.05" y1="31.3" x2="47.05" y2="31.05" width="0.2" layer="1"/>
-<wire x1="50.5" y1="35" x2="58" y2="35" width="0.2" layer="1"/>
+<wire x1="50" y1="35" x2="58" y2="35" width="0.2" layer="1"/>
 <wire x1="58" y1="35" x2="59" y2="34" width="0.2" layer="1"/>
 <wire x1="62.5" y1="25.57" x2="62.48" y2="25.55" width="1" layer="1"/>
 <wire x1="59" y1="30" x2="62.5" y2="30" width="1" layer="1"/>
@@ -2320,7 +2316,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="62.5" y1="34" x2="62.5" y2="30" width="1" layer="1"/>
 <wire x1="62.5" y1="30" x2="62.48" y2="29.98" width="1" layer="1"/>
 <wire x1="62.48" y1="29.98" x2="62.48" y2="25.55" width="1" layer="1"/>
-<contactref element="JP1" pad="1"/>
+<contactref element="JP2" pad="1"/>
 <wire x1="22.65" y1="3.5" x2="24" y2="3.5" width="0.5" layer="1"/>
 <wire x1="24" y1="3.5" x2="34.5" y2="3.5" width="0.5" layer="1"/>
 <wire x1="34.5" y1="3.5" x2="35.1" y2="4.1" width="0.5" layer="1"/>
@@ -2331,7 +2327,9 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="23.85" y1="3.65" x2="24" y2="3.5" width="0.5" layer="1"/>
 <wire x1="20" y1="31.35" x2="20" y2="30" width="0.2" layer="1"/>
 <wire x1="47.05" y1="31.3" x2="47.05" y2="31.55" width="0.2" layer="1"/>
-<wire x1="47.05" y1="31.55" x2="50.5" y2="35" width="0.2" layer="1"/>
+<wire x1="50" y1="35" x2="47" y2="32" width="0.2" layer="1"/>
+<wire x1="47" y1="32" x2="47" y2="31.35" width="0.2" layer="1"/>
+<wire x1="47" y1="31.35" x2="47.05" y2="31.3" width="0.2" layer="1"/>
 </signal>
 <signal name="V+">
 <contactref element="D1" pad="P$C"/>
@@ -2407,7 +2405,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="VCC">
 <contactref element="C7" pad="2"/>
-<contactref element="JP2" pad="2"/>
+<contactref element="JP1" pad="2"/>
 <contactref element="U3" pad="5"/>
 <contactref element="C13" pad="1"/>
 <contactref element="IC1" pad="4"/>
@@ -2434,7 +2432,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="45" y1="18.5" x2="46" y2="17.5" width="0.5" layer="1"/>
 <wire x1="46" y1="17.5" x2="46" y2="15.65" width="0.5" layer="1"/>
 <wire x1="46" y1="15.65" x2="45" y2="14.65" width="0.5" layer="1"/>
-<contactref element="JP1" pad="2"/>
+<contactref element="JP2" pad="2"/>
 <wire x1="17" y1="31.5" x2="17" y2="27.81" width="0.2" layer="16"/>
 <wire x1="17" y1="27.81" x2="17.77" y2="27.04" width="0.2" layer="16"/>
 <wire x1="22.31" y1="22.5" x2="17.77" y2="27.04" width="0.5" layer="1"/>
@@ -2667,7 +2665,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="12.75" y1="37.25" x2="12.75" y2="34.35" width="0.2" layer="1"/>
 </signal>
 <signal name="N$10">
-<contactref element="J2" pad="P$1"/>
+<contactref element="J1" pad="P$1"/>
 <contactref element="Q4" pad="P$6"/>
 <contactref element="Q4" pad="P$1"/>
 <contactref element="Q4" pad="P$2"/>
@@ -2744,8 +2742,10 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="33.5" y1="40.5" x2="20" y2="40.5" width="0.2" layer="1"/>
 <wire x1="15.2" y1="33.8" x2="15.3" y2="33.8" width="0.2" layer="1"/>
 <wire x1="15.3" y1="33.8" x2="15.35" y2="33.75" width="0.2" layer="1"/>
-<wire x1="20" y1="40.5" x2="15.35" y2="35.85" width="0.2" layer="1"/>
-<wire x1="15.35" y1="35.85" x2="15.35" y2="33.75" width="0.2" layer="1"/>
+<wire x1="20" y1="40.5" x2="15" y2="35.5" width="0.2" layer="1"/>
+<wire x1="15" y1="35.5" x2="15" y2="35" width="0.2" layer="1"/>
+<wire x1="15.35" y1="33.75" x2="15.35" y2="34.65" width="0.2" layer="1"/>
+<wire x1="15.35" y1="34.65" x2="15" y2="35" width="0.2" layer="1"/>
 </signal>
 <signal name="BLE-MOSI">
 <contactref element="IC1" pad="26"/>
@@ -2755,7 +2755,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="34" y1="20.5" x2="35.1" y2="19.4" width="0.2" layer="1"/>
 <wire x1="35.1" y1="19.4" x2="35.1" y2="18" width="0.2" layer="1"/>
 <wire x1="11.75" y1="22.75" x2="11.75" y2="29.65" width="0.2" layer="1"/>
-<contactref element="JP1" pad="8"/>
+<contactref element="JP2" pad="8"/>
 <wire x1="15.23" y1="15.54" x2="13.5" y2="17.27" width="0.2" layer="16"/>
 <wire x1="13.5" y1="17.27" x2="13.5" y2="21" width="0.2" layer="16"/>
 <via x="13.5" y="21" extent="1-16" drill="0.4"/>
@@ -2780,7 +2780,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="10" y1="30" x2="10" y2="30.5" width="0.2" layer="1"/>
 <wire x1="10" y1="30.5" x2="10.25" y2="30.75" width="0.2" layer="1"/>
 <wire x1="10.25" y1="30.75" x2="10.65" y2="30.75" width="0.2" layer="1"/>
-<contactref element="JP1" pad="10"/>
+<contactref element="JP2" pad="10"/>
 <wire x1="15.23" y1="18.08" x2="15.23" y2="19.5" width="0.2" layer="1"/>
 <wire x1="15.23" y1="19.5" x2="15" y2="19.5" width="0.2" layer="1"/>
 </signal>
@@ -2793,7 +2793,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="13" y1="20" x2="12" y2="21" width="0.2" layer="1"/>
 <wire x1="12" y1="21" x2="11.25" y2="21.75" width="0.2" layer="1"/>
 <wire x1="11.25" y1="21.75" x2="11.25" y2="29.65" width="0.2" layer="1"/>
-<contactref element="JP1" pad="6"/>
+<contactref element="JP2" pad="6"/>
 <via x="12" y="21" extent="1-16" drill="0.4"/>
 <wire x1="15.23" y1="13" x2="12" y2="16.23" width="0.2" layer="16"/>
 <wire x1="12" y1="16.23" x2="12" y2="21" width="0.2" layer="16"/>
@@ -2807,7 +2807,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="RPWM/MISO">
 <contactref element="IC1" pad="31"/>
-<contactref element="JP2" pad="1"/>
+<contactref element="JP1" pad="1"/>
 <contactref element="R1" pad="1"/>
 <contactref element="R7" pad="2"/>
 <wire x1="6.5" y1="44.85" x2="7.5" y2="44.85" width="0.2" layer="1"/>
@@ -2867,7 +2867,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="P2_2">
 <contactref element="U1" pad="P2_2"/>
-<contactref element="JP1" pad="3"/>
+<contactref element="JP2" pad="3"/>
 <wire x1="17.77" y1="10.46" x2="26.96" y2="10.46" width="0.2" layer="1"/>
 <wire x1="27.6" y1="5.95" x2="27.6" y2="9.82" width="0.2" layer="1"/>
 <wire x1="27.6" y1="9.82" x2="26.96" y2="10.46" width="0.2" layer="1"/>
@@ -2875,7 +2875,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="P2_1">
 <contactref element="U1" pad="P2_1"/>
 <wire x1="28.85" y1="5.95" x2="28.85" y2="10.5" width="0.2" layer="1"/>
-<contactref element="JP1" pad="4"/>
+<contactref element="JP2" pad="4"/>
 <wire x1="15.23" y1="10.46" x2="15.36" y2="10.46" width="0.2" layer="1"/>
 <wire x1="15.36" y1="10.46" x2="16.6" y2="11.7" width="0.2" layer="1"/>
 <wire x1="16.6" y1="11.7" x2="27.65" y2="11.7" width="0.2" layer="1"/>
@@ -2883,7 +2883,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="BLE-RESET">
 <contactref element="U1" pad="RESET"/>
-<contactref element="JP1" pad="7"/>
+<contactref element="JP2" pad="7"/>
 <wire x1="17.77" y1="15.54" x2="29.04" y2="15.54" width="0.2" layer="1"/>
 <wire x1="29.04" y1="15.54" x2="30" y2="16.5" width="0.2" layer="1"/>
 <wire x1="30" y1="16.5" x2="30" y2="17.9" width="0.2" layer="1"/>

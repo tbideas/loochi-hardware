@@ -16293,8 +16293,8 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 </class>
 </classes>
 <parts>
-<part name="J2" library="power-connectors" deviceset="POWER_JACK" device="SMT3"/>
-<part name="JP2" library="SparkFun" deviceset="AVR_SPI_PRG_6" device="NS" value="SPI_PRG"/>
+<part name="J1" library="power-connectors" deviceset="POWER_JACK" device="SMT3"/>
+<part name="JP1" library="SparkFun" deviceset="AVR_SPI_PRG_6" device="NS" value="SPI_PRG"/>
 <part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="C8" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
@@ -16384,15 +16384,15 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <part name="D4" library="diode-schottky" deviceset="DIODE-SCHOTTKY" device="D0603"/>
 <part name="D5" library="diode-schottky" deviceset="DIODE-SCHOTTKY" device="" value="PMEG4010CEH"/>
 <part name="S1" library="buttons" deviceset="TAC_SWITCH" device=""/>
-<part name="JP1" library="SparkFun" deviceset="M05X2" device="PTH"/>
+<part name="JP2" library="SparkFun" deviceset="M05X2" device="PTH"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="J2" gate="G$1" x="15.24" y="20.32"/>
-<instance part="JP2" gate="G$1" x="137.16" y="106.68"/>
+<instance part="J1" gate="G$1" x="15.24" y="20.32"/>
+<instance part="JP1" gate="G$1" x="137.16" y="106.68"/>
 <instance part="C7" gate="G$1" x="12.7" y="101.6" smashed="yes" rot="R90">
 <attribute name="NAME" x="12.319" y="103.124" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="17.399" y="103.124" size="1.778" layer="96" rot="R90"/>
@@ -16504,14 +16504,14 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <attribute name="NAME" x="53.34" y="28.4226" size="1.778" layer="95"/>
 </instance>
 <instance part="S1" gate="S" x="40.64" y="53.34"/>
-<instance part="JP1" gate="G$1" x="172.72" y="40.64"/>
+<instance part="JP2" gate="G$1" x="172.72" y="40.64"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="BUTTON/MOSI" class="0">
 <segment>
-<pinref part="JP2" gate="G$1" pin="4"/>
+<pinref part="JP1" gate="G$1" pin="4"/>
 <wire x1="147.32" y1="106.68" x2="152.4" y2="106.68" width="0.1524" layer="91"/>
 <label x="152.4" y="106.68" size="1.778" layer="95"/>
 </segment>
@@ -16538,7 +16538,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 </net>
 <net name="RESET" class="0">
 <segment>
-<pinref part="JP2" gate="G$1" pin="5"/>
+<pinref part="JP1" gate="G$1" pin="5"/>
 <wire x1="129.54" y1="104.14" x2="124.46" y2="104.14" width="0.1524" layer="91"/>
 <label x="109.22" y="104.14" size="1.778" layer="95"/>
 </segment>
@@ -16550,7 +16550,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 </net>
 <net name="BLE-CS/SCK" class="0">
 <segment>
-<pinref part="JP2" gate="G$1" pin="3"/>
+<pinref part="JP1" gate="G$1" pin="3"/>
 <wire x1="129.54" y1="106.68" x2="124.46" y2="106.68" width="0.1524" layer="91"/>
 <label x="109.22" y="106.68" size="1.778" layer="95"/>
 </segment>
@@ -16585,7 +16585,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <junction x="7.62" y="76.2"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="6"/>
+<pinref part="JP1" gate="G$1" pin="6"/>
 <wire x1="147.32" y1="104.14" x2="152.4" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="104.14" x2="152.4" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
@@ -16648,8 +16648,8 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="27.94" y1="15.24" x2="27.94" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="GNDBREAK"/>
-<pinref part="J2" gate="G$1" pin="GND"/>
+<pinref part="J1" gate="G$1" pin="GNDBREAK"/>
+<pinref part="J1" gate="G$1" pin="GND"/>
 <wire x1="17.78" y1="25.4" x2="17.78" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="22.86" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
 <junction x="17.78" y="22.86"/>
@@ -16731,7 +16731,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <junction x="220.98" y="33.02"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="1"/>
+<pinref part="JP2" gate="G$1" pin="1"/>
 <wire x1="165.1" y1="45.72" x2="162.56" y2="45.72" width="0.1524" layer="91"/>
 <label x="154.94" y="45.72" size="1.778" layer="95"/>
 </segment>
@@ -16808,7 +16808,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <wire x1="17.78" y1="96.52" x2="17.78" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="2"/>
+<pinref part="JP1" gate="G$1" pin="2"/>
 <wire x1="147.32" y1="109.22" x2="152.4" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="109.22" x2="152.4" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
@@ -16857,7 +16857,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <wire x1="218.44" y1="35.56" x2="218.44" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="2"/>
+<pinref part="JP2" gate="G$1" pin="2"/>
 <wire x1="180.34" y1="45.72" x2="182.88" y2="45.72" width="0.1524" layer="91"/>
 <label x="182.88" y="45.72" size="1.778" layer="95"/>
 </segment>
@@ -17033,7 +17033,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="J2" gate="G$1" pin="PWR"/>
+<pinref part="J1" gate="G$1" pin="PWR"/>
 <pinref part="Q4" gate="G$1" pin="D"/>
 <wire x1="17.78" y1="27.94" x2="20.32" y2="27.94" width="0.1524" layer="91"/>
 </segment>
@@ -17097,7 +17097,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="233.68" y="66.04" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="8"/>
+<pinref part="JP2" gate="G$1" pin="8"/>
 <wire x1="180.34" y1="38.1" x2="182.88" y2="38.1" width="0.1524" layer="91"/>
 <label x="182.88" y="38.1" size="1.778" layer="95"/>
 </segment>
@@ -17114,7 +17114,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="233.68" y="60.96" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="10"/>
+<pinref part="JP2" gate="G$1" pin="10"/>
 <wire x1="180.34" y1="35.56" x2="182.88" y2="35.56" width="0.1524" layer="91"/>
 <label x="182.88" y="35.56" size="1.778" layer="95"/>
 </segment>
@@ -17131,7 +17131,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="233.68" y="68.58" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="6"/>
+<pinref part="JP2" gate="G$1" pin="6"/>
 <wire x1="180.34" y1="40.64" x2="182.88" y2="40.64" width="0.1524" layer="91"/>
 <label x="182.88" y="40.64" size="1.778" layer="95"/>
 </segment>
@@ -17150,7 +17150,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <pinref part="IC1" gate="G$1" pin="(MISO/DO/OC1A)PB1"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="G$1" pin="1"/>
+<pinref part="JP1" gate="G$1" pin="1"/>
 <wire x1="129.54" y1="109.22" x2="124.46" y2="109.22" width="0.1524" layer="91"/>
 <label x="109.22" y="109.22" size="1.778" layer="95"/>
 </segment>
@@ -17216,7 +17216,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="182.88" y="81.28" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="3"/>
+<pinref part="JP2" gate="G$1" pin="3"/>
 <wire x1="165.1" y1="43.18" x2="162.56" y2="43.18" width="0.1524" layer="91"/>
 <label x="154.94" y="43.18" size="1.778" layer="95"/>
 </segment>
@@ -17228,7 +17228,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="182.88" y="78.74" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="4"/>
+<pinref part="JP2" gate="G$1" pin="4"/>
 <wire x1="180.34" y1="43.18" x2="182.88" y2="43.18" width="0.1524" layer="91"/>
 <label x="182.88" y="43.18" size="1.778" layer="95"/>
 </segment>
@@ -17240,7 +17240,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <label x="233.68" y="76.2" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="7"/>
+<pinref part="JP2" gate="G$1" pin="7"/>
 <wire x1="165.1" y1="38.1" x2="162.56" y2="38.1" width="0.1524" layer="91"/>
 <label x="149.86" y="38.1" size="1.778" layer="95"/>
 </segment>
