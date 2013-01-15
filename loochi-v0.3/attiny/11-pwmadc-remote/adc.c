@@ -63,9 +63,18 @@ void init_adc(void)
 	/* Set the voltage reference to 2.56V and select a channel */
 	ADMUX = ADMUX_RED;
 	/* This bit needs to be set for the 2.56 Voltage reference */
-	//ADCSRB = (1 << REFS2); // 2.56
-	ADCSRB = 0; // 1.1
-	ADCSRB |= (1 << GSEL); // x32
+	ADCSRB = (1 << REFS2); // 2.56
+	//ADCSRB = 0; // 1.1
+	//ADCSRB |= (1 << GSEL); // x32
+	/* Test results: 
+	 *   Blue led, current = 708 mA (pwm=127) - Approximately 1000 samples each time, repeated several times.
+	 *   1.1  & x20 => Std deviation=1.45 
+	 *   1.1  & x32 => Std deviation=11/14  (@pwm=100/487mA to avoid overflow) 
+	 *   2.56 & x20 => Std deviation=.57/.66 
+	 *   2.56 & x32 => Std deviation=23/25 
+	 *
+	 * Conclusion: Avoid x32 (maybe that's why it is not listed in the doc for our pins configuration?)
+	 */
 
 	/* Set the prescaler to DIV64. The ADC clock will run @125kHz 
 	 * which is in the recommended range (50kHz to 200kHz).

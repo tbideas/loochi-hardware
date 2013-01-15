@@ -32,7 +32,11 @@ void init_current_loop(void)
 	TCCR1A = (1 << PWM1A) | (1 << PWM1B);
 	
 	/* Set Timer1 prescaler to 2 - The frequency will be 64Mhz/2=32Mhz */
-	TCCR1B = (1 << CS11);
+	//TCCR1B = (1 << CS11);
+	TCCR1B = (1 << CS10); // No divider - run at 64Mhz
+	
+	// Overflow at 128 - so fs = 250khz
+	//OCR1C = 0x80;
 
 	/* Set COM1A = COM1B = 0b10 => Clear on compare match */
 	TCCR1C = (1 << COM1A1S) | (1 << COM1B1S)
