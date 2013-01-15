@@ -16367,7 +16367,7 @@ Button commonly used for reset or general input. Spark Fun Electronics SKU : COM
 <part name="L4" library="inductors" deviceset="L-US" device="L0603" value="10uH"/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="R13" library="rcl" deviceset="R-EU_" device="R0603" value="2"/>
-<part name="F1" library="rcl" deviceset="R-EU_" device="R0603" value="MPZ2012"/>
+<part name="F1" library="rcl" deviceset="R-EU_" device="R0603" value="MPZ1608"/>
 <part name="C14" library="rcl" deviceset="C-EU" device="C0603K" value="0.1uF"/>
 <part name="GND28" library="supply1" deviceset="GND" device=""/>
 <part name="Q4" library="mosfet" deviceset="FDC654P" device=""/>

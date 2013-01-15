@@ -2027,7 +2027,7 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <element name="R13" library="rcl" package="R0603" value="2" x="47" y="26" smashed="yes" rot="R90">
 <attribute name="NAME" x="46.165" y="25.165" size="0.8128" layer="25" rot="R90"/>
 </element>
-<element name="F1" library="rcl" package="R0603" value="MPZ2012" x="2.5" y="26.5" smashed="yes" rot="R270">
+<element name="F1" library="rcl" package="R0603" value="MPZ1608" x="2.5" y="26.5" smashed="yes" rot="R270">
 <attribute name="NAME" x="2.135" y="24.835" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="C14" library="rcl" package="C0603K" value="0.1uF" x="4" y="26.5" smashed="yes" rot="R270">
