@@ -1,0 +1,38 @@
+dim connected
+
+event system_boot(major, minor, patch, build, ll_version, protocol, hw)	
+	#set to advertising mode
+	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
+	
+	# call gap_set_adv_parameters(32,48,7)
+	
+	#set bondable mode
+	call sm_set_bondable_mode(1)	
+	
+	call hardware_spi_transfer(0,1,0)
+	call hardware_spi_transfer(0,1,0)
+	call hardware_spi_transfer(0,1,0)
+	
+	connected = 0
+end
+
+event attributes_value(connection, reason, handle, offset, value_len, value_data)
+	call hardware_spi_transfer(0,1,value_data(0:1))
+	call hardware_spi_transfer(0,1,value_data(1:1))
+	call hardware_spi_transfer(0,1,value_data(2:1))
+end
+
+event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
+	connected = 1
+end
+
+event connection_disconnected(handle,result)
+	connected = 0
+	call hardware_spi_transfer(0,3,"\x00\x00\x00")
+
+    # Restart advertisement
+	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
+	
+	#set bondable mode
+	call sm_set_bondable_mode(1)	
+end

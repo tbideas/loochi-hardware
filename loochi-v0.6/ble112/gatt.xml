@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <service uuid="1800">
+      <description>Generic Access Profile</description>
+	  <!-- Device Name -->                                        
+	  <!-- org.bluetooth.characteristic.gap.device_name -->
+      <characteristic uuid="2a00">
+        <properties read="true" const="true" />
+        <value>Loochi</value>
+      </characteristic>
+
+	  <!-- Device Name -->                                        
+	  <!-- org.bluetooth.characteristic.gap.device_name -->
+      <characteristic uuid="2a01">
+        <properties read="true" const="true" />
+        <value type="hex">4142</value>
+      </characteristic>
+    </service>
+
+    <service uuid="180A" id="manufacturer">
+      <description>Device Information</description>
+	  <!-- Model Number String -->
+	  <!-- org.bluetooth.characteristic.model_number_string -->
+	  <characteristic uuid="2a24">
+        <properties read="true" const="true" />
+        <value>Loochi 0.6</value>
+		<description>Model Number String</description>
+      </characteristic>
+
+	  <!-- Firmware Revision String -->
+	  <!-- org.bluetooth.characteristic.firmware_revision_string -->
+	  <characteristic uuid="2a26">
+        <properties read="true" const="true" />
+        <value>20130115</value>
+		<description>Firmware Revision String</description>
+      </characteristic>
+	  
+	  <!-- Hardware Revision String -->
+	  <!-- org.bluetooth.characteristic.hardware_revision_string -->
+	  <characteristic uuid="2a27">
+        <properties read="true" const="true" />
+        <value>0.6</value>
+		<description>Hardware Revision String</description>
+      </characteristic>   
+		
+		<!-- Manufacturer Name String -->
+		<!-- org.bluetooth.characteristic.manufacturer_name_string -->
+        <characteristic uuid="2A29">
+            <properties read="true" const="true" />
+            <value>TBIdeas</value>
+        </characteristic>
+    </service>
+	
+	<service uuid="4FC10E26-F94A-480F-B1AF-6A2E299B7BF8" advertise="true">
+		<description>Loochi</description>
+		<characteristic uuid="BB4800AD-7F0C-4A59-8176-3316EBB236A7" id="color">
+			<properties write="true" />
+			<value type="hex" length="3"/>
+			<description>Color projected by the lamp</description>
+		</characteristic>
+	</service>
+</configuration>
