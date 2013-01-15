@@ -42,7 +42,7 @@ ISR(SIG_USI_OVERFLOW)
 
 int main(void)
 {
-	/* Use the hardware (Timer1) to generate a fast (125kHz) pwm
+	/* Use the hardware (Timer1) to generate a fast (250kHz) pwm
 	 * that will drive the buck converter on/off.
 	 * 
 	 * Initialize the PWM value *before*.
