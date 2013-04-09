@@ -1,38 +1,68 @@
 dim connected
+dim i
 
-event system_boot(major, minor, patch, build, ll_version, protocol, hw)	
+event system_boot(major, minor, patch, build, ll_version, protocol, hw)
 	#set to advertising mode
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
-	
+
 	# call gap_set_adv_parameters(32,48,7)
-	
+
 	#set bondable mode
-	call sm_set_bondable_mode(1)	
-	
-	call hardware_spi_transfer(0,1,0)
-	call hardware_spi_transfer(0,1,0)
-	call hardware_spi_transfer(0,1,0)
-	
+	call sm_set_bondable_mode(1)
+
 	connected = 0
 end
 
 event attributes_value(connection, reason, handle, offset, value_len, value_data)
-	call hardware_spi_transfer(0,1,value_data(0:1))
-	call hardware_spi_transfer(0,1,value_data(1:1))
-	call hardware_spi_transfer(0,1,value_data(2:1))
+	# Enable Chip Select (active low)
+	call hardware_io_port_write(0, $10, 00)
+
+	# Because Loochi is very busy doing interrupt work, it does not have time to
+	# fetch the byte from the 1-byte buffer if we send all the bytes in one command.
+	# So we send bytes one by one, which leaves enough time to copy them into our rx buffer.
+	#
+	# If we ever improve interrupt performance, we could use:
+	#   call hardware_spi_transfer(0,value_len,value_data(0))
+
+	# Write bytes one by one
+	i = 0
+	while (i < value_len)
+		call hardware_spi_transfer(0, 1, value_data(i))
+		i = i + 1
+	end while
+
+	# Disable Chip Select
+	call hardware_io_port_write(0, $10, $10)
 end
 
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
 	connected = 1
+
+	# On Loochi, the AVR Programmer SCK is also the BLE-CS pin
+	# So we initialize the Chip Select pin only if someone actually connects to the device
+	# This way, the CS pin can also be used to program the uC without conflict.
+	# YOU NEED TO RESET THE BLE MODULE BEFORE RE-PROGRAMMING THE AVR ...
+
+	# P0_4 is Chip Select - Default is high - active low
+	call hardware_io_port_write(0, $10, $10)
+	call hardware_io_port_config_direction(0, $10)
 end
 
 event connection_disconnected(handle,result)
 	connected = 0
-	call hardware_spi_transfer(0,3,"\x00\x00\x00")
 
-    # Restart advertisement
+	# Send "black out" command to device
+	call hardware_io_port_write(0, $10, 00)
+	call hardware_spi_transfer(0,3,"\x00\x00\x00")
+	call hardware_io_port_write(0, $10, $10)
+
+	# Put Chip Select back in input mode to avoid problems with SCK during programming of the AVR
+	# (see remark above)
+	call hardware_io_port_config_direction(0, 0)
+
+	# Restart advertisement
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
-	
+
 	#set bondable mode
-	call sm_set_bondable_mode(1)	
+	call sm_set_bondable_mode(1)
 end
