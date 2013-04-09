@@ -3,12 +3,11 @@
 #include <avr/interrupt.h>
 #include "globals.h"
 #include "adc.h"
+#include "brightness.h"
 #include "current.h"
 #include "serial.h"
 
 #define LOOP_DELAY 100
-
-uint16_t redadc, greenadc, blueadc;
 
 void init_timer0(void);
 
@@ -17,6 +16,7 @@ void init_timer0(void);
 // Timer0 overflow - Every 32us
 ISR(SIG_OVERFLOW0)
 {
+	brightness_pwm_loop();
 	adc_loop();
 	serial_tick();
 }
@@ -42,7 +42,7 @@ ISR(SIG_USI_OVERFLOW)
 
 int main(void)
 {
-	/* Use the hardware (Timer1) to generate a fast (125kHz) pwm
+	/* Use the hardware (Timer1) to generate a fast (250kHz) pwm
 	 * that will drive the buck converter on/off.
 	 * 
 	 * Initialize the PWM value *before*.
@@ -61,11 +61,32 @@ int main(void)
 	/* Initializes the serial port and prepare to receive data */
 	init_serial();
 
+	/* Initialize global variables */
+	pwm_c = 0x00;
+	pwm_red =   0x000;
+	pwm_green = 0x000;
+	pwm_blue =  0x000;
+
+	/* Enable pull-up on PB0 */
+	PORTB |= (1 << PB0);
+
 	/* Enable interrupts and let the show begin! */
 	sei();
 
 	while(1) {
-		
+		_delay_ms(10);
+		// If button pressed
+		if ((PINB & (1 << PB0)) == 0) {
+			if (pwm_red == 0 && pwm_green == 0 && pwm_blue == 0) {
+				pwm_red = pwm_green = pwm_blue = 0xFF;
+				
+				_delay_ms(30);
+			}
+			else {
+				pwm_red = pwm_green = pwm_blue = 0;
+				_delay_ms(30);
+			}
+		}
 	}
 }
 

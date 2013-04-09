@@ -3,10 +3,9 @@
 #include "globals.h"
 
 /* ADC configuration for each sense resistor */
-#define ADMUX_RED    	((1 << REFS1) | 0x12) // Pins PA5(-) and PA4(+) with a gain of 20x
-#define ADMUX_GREEN  	((1 << REFS1) | 0x17) // Pins PA7(-) and PA6(+) with a gain of 20x
-#define ADMUX_BLUE   	((1 << REFS1) | 0x19) // Pins PB5(-) and PB6(+) with a gain of 20x
-
+#define ADMUX_RED    	((1 << REFS1) | 0x12)
+#define ADMUX_GREEN  	((1 << REFS1) | 0x17)
+#define ADMUX_BLUE   	((1 << REFS1) | 0x19)
 uint8_t adc_discard;
 
 /*
@@ -63,18 +62,7 @@ void init_adc(void)
 	/* Set the voltage reference to 2.56V and select a channel */
 	ADMUX = ADMUX_RED;
 	/* This bit needs to be set for the 2.56 Voltage reference */
-	ADCSRB = (1 << REFS2); // 2.56
-	//ADCSRB = 0; // 1.1
-	//ADCSRB |= (1 << GSEL); // x32
-	/* Test results: 
-	 *   Blue led, current = 708 mA (pwm=127) - Approximately 1000 samples each time, repeated several times.
-	 *   1.1  & x20 => Std deviation=1.45 
-	 *   1.1  & x32 => Std deviation=11/14  (@pwm=100/487mA to avoid overflow) 
-	 *   2.56 & x20 => Std deviation=.57/.66 
-	 *   2.56 & x32 => Std deviation=23/25 
-	 *
-	 * Conclusion: Avoid x32 (maybe that's why it is not listed in the doc for our pins configuration?)
-	 */
+	ADCSRB = (1 << REFS2);
 
 	/* Set the prescaler to DIV64. The ADC clock will run @125kHz 
 	 * which is in the recommended range (50kHz to 200kHz).
@@ -98,7 +86,7 @@ void adc_loop()
 	 * If the ADC is available, and if the signals have been on for at least a few cycles, 
 	 * then we can choose one channel and run a conversion.
 	 */
-	if ((ADCSRA & (1 << ADSC)) == 0) {
+	if ((ADCSRA & (1 << ADSC)) == 0 && pwm_c > 0x10) {
 		/* Choosing the right channel is actually pretty complicated so we use a truth table */
 		uint8_t next_channel = adc_choose_nextchannel();
 		
@@ -128,24 +116,68 @@ uint8_t adc_choose_nextchannel(void)
 
 	if (adc_discard > 1) 
 		truth |= 0x8;
-	
-	// Red, Green and Blue always on (we have removed the brightness pwm)
-	truth |= 0x7;
+	if (pwm_c < pwm_red)
+		truth |= 0x4;
+	if (pwm_c < pwm_green)
+		truth |= 0x2;
+	if (pwm_c < pwm_blue)
+		truth |= 0x1;
 	
 	return pgm_read_word_near(ADC_TRUTHTABLE + truth);
 }
 
+/*
+ * This function gets and ADC reading and adjust the current PWM to get the current we want.
+ *
+ * This will be called 104 uS after the conversion is started above
+ * but the measure is taken a t0+8uS so we can effectively measure
+ * even when the PWM is only at a value of 1*8uS.
+ *
+ * If the brightness is at 0x01 (worst case) and the correct pwm at 0xFF (worst case), it will
+ * take 2ms * 0xFF = 510ms for the current to reach the correct value.
+ *
+ * convSpeed = max(1, brightness * 8uS / 104uS)
+ *  -> We can convert convSpeed times per each brightness cycle
+ * stabilizeTime = NumberOfConversionsNeeded / convSpeed * 2mS
+ *  -> NumberOfConversionsNeeded = 0xFF if we start @0 but we could start higher
+ *
+ * With brightness 0x01: 510mS
+ * With brightness 0x02: 510mS
+ * With brightness 0x20: 255mS
+ * With brightness 0x80: 56mS
+ * With brightness 0xFF: 26ms
+ * 
+ */
 void process_adc_reading(uint16_t adc)
 {
+	/* We always need to discard one measure */
 	if (adc_discard++ < 1)
 		return;
 
-	if (ADMUX == ADMUX_RED) 
-		redadc = adc;
-	else if (ADMUX == ADMUX_GREEN) 
-		greenadc = adc;
-	else if (ADMUX == ADMUX_BLUE) 
-		blueadc = adc;
+	if (ADMUX == ADMUX_RED) {
+		if (adc < ADC_TARGET(redcpwm) && redcpwm < CPWM_MAX) {
+			redcpwm++;
+		}
+		else if (redcpwm > CPWM_MIN) {
+			redcpwm--;
+		}
+	}
+	if (ADMUX == ADMUX_GREEN) {
+		if (adc < ADC_TARGET(greencpwm) && greencpwm < CPWM_MAX) {
+			greencpwm++;
+		}
+		else if (greencpwm > CPWM_MIN) {
+			greencpwm--;
+		}
+	}
+	if (ADMUX == ADMUX_BLUE) {
+		/* Remember that the blue output is inverted */
+		if (adc < ADC_TARGET(0xFF - bluecpwm) && bluecpwm > CPWM_MIN) {
+			bluecpwm--;
+		}
+		else if (bluecpwm < CPWM_MAX) {
+			bluecpwm++;
+		}
+	}
 }
-
 

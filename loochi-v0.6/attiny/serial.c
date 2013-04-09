@@ -54,20 +54,14 @@ void serial_rx_byte(uint8_t byte)
 		
 	usi_buffer[usi_counter++] = byte;
 
-	if (usi_counter == 1) {
-		USIDR = redadc & 0xFF;
-	}
-	else if (usi_counter == 2) {
-		USIDR = blueadc >> 2;
-	}
-	else if (usi_counter == 3) {
-		redcpwm = usi_buffer[0];
-		greencpwm = usi_buffer[1];
-		bluecpwm = usi_buffer[2];
+	if (usi_counter == 3) {
+		pwm_red = usi_buffer[0];
+		pwm_green = usi_buffer[1];
+		pwm_blue = usi_buffer[2];
 		usi_counter = 0;
-
-		USIDR = redadc >> 8;
 	}
+	
+	USIDR = usi_counter;
 
 	// Always reset the counter when we get a byte
 	usi_timeout = 0;

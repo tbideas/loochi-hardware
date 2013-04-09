@@ -57,7 +57,7 @@ RM = rm -f
 
 
 TARGET=loochi
-SRC = main.c current.c serial.c adc.c
+SRC = main.c current.c brightness.c serial.c adc.c
 
 ##### Do not edit below this line ######
 
