@@ -37,7 +37,7 @@ end
 
 event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
 	connected = 1
-
+	
 	# On Loochi, the AVR Programmer SCK is also the BLE-CS pin
 	# So we initialize the Chip Select pin only if someone actually connects to the device
 	# This way, the CS pin can also be used to program the uC without conflict.

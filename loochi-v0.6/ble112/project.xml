@@ -4,4 +4,5 @@
 	<hardware in="hardware.xml"/>
 	<script in="loochi.bgs"/>
 	<image out="loochi.hex"/>
+	<throughout optimize="performance" />
 </project>
