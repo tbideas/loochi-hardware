@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include "globals.h"
+#include "adc.h"
 
 /* ADC configuration for each sense resistor */
 #define ADMUX_RED    	((1 << REFS1) | 0x12)
@@ -27,13 +28,13 @@ PROGMEM uint8_t ADC_TRUTHTABLE[] = {
 };
 
 /* Expected reading of the ADC for a given value of Ton to get 700mA on the LED
- * 
+ *
  * The formula is: ADC = 2*Ton/Tperiod*Iled*1024/2.56
  * Everything is known except Ton.
  * $ perl -e 'print join(",", map { sprintf "%.0f", (2*$_/0xff*0.7*1024/2.56)} 0..255)'
  * (the first value was manually hacked to -1 to make sure the thing starts)
  */
-PROGMEM int16_t ADC_TARGET_VALUES[] = { 
+PROGMEM int16_t ADC_TARGET_VALUES[] = {
 	-1,2,4,7,9,11,13,15,18,20,22,24,26,29,31,33,35,37,40,42,44,46,48,51,53,55,57,59,61,64,66,68,70,72,75,77,79,81,83,86,88,90,92,94,97,99,101,103,105,
 	108,110,112,114,116,119,121,123,125,127,130,132,134,136,138,141,143,145,147,149,152,154,156,158,160,163,165,167,169,171,173,176,178,180,182,184,
 	187,189,191,193,195,198,200,202,204,206,209,211,213,215,217,220,222,224,226,228,231,233,235,237,239,242,244,246,248,250,253,255,257,259,261,264,
@@ -44,7 +45,7 @@ PROGMEM int16_t ADC_TARGET_VALUES[] = {
 };
 #define ADC_TARGET(a) (pgm_read_word_near(ADC_TARGET_VALUES + a))
 
-/* Count the number of values that we have discarded. 
+/* Count the number of values that we have discarded.
  * Every time we switch from one channel to the other, we need to discard at least one
  * before trusting the reading.
  */
@@ -64,7 +65,7 @@ void init_adc(void)
 	/* This bit needs to be set for the 2.56 Voltage reference */
 	ADCSRB = (1 << REFS2);
 
-	/* Set the prescaler to DIV64. The ADC clock will run @125kHz 
+	/* Set the prescaler to DIV64. The ADC clock will run @125kHz
 	 * which is in the recommended range (50kHz to 200kHz).
 	 * 1 ADC clockcycle will be 8uS.
 	 * Sampling will be done 1.5 cycles * 8uS = 12uS after the start of a conversion.
@@ -77,19 +78,19 @@ void init_adc(void)
 		| (1 << ADEN);
 }
 
-/* 
+/*
  * This function checks to see if the ADS is available and starts a new conversion on the right channel.
  */
-void adc_loop()
+void adc_loop(void)
 {
-	/* 
-	 * If the ADC is available, and if the signals have been on for at least a few cycles, 
+	/*
+	 * If the ADC is available, and if the signals have been on for at least a few cycles,
 	 * then we can choose one channel and run a conversion.
 	 */
 	if ((ADCSRA & (1 << ADSC)) == 0 && pwm_c > 0x10) {
 		/* Choosing the right channel is actually pretty complicated so we use a truth table */
 		uint8_t next_channel = adc_choose_nextchannel();
-		
+
 		if (next_channel == ADMUX) {
 			/* We stay on the same ADC channel - Just restart a new conversion */
 			ADCSRA |= (1 << ADSC);
@@ -102,9 +103,9 @@ void adc_loop()
 	}
 }
 
-/* 
- * Calculate the input to the truth table (read description above). 
- * 
+/*
+ * Calculate the input to the truth table (read description above).
+ *
  * Returns 0 if no ADC should be chosen or the ADMUX value to use.
  */
 uint8_t adc_choose_nextchannel(void)
@@ -114,7 +115,7 @@ uint8_t adc_choose_nextchannel(void)
 	if (ADMUX == ADMUX_GREEN)	truth = 0x10;
 	if (ADMUX == ADMUX_BLUE)	truth = 0x20;
 
-	if (adc_discard > 1) 
+	if (adc_discard > 1)
 		truth |= 0x8;
 	if (pwm_c < pwm_red)
 		truth |= 0x4;
@@ -122,7 +123,7 @@ uint8_t adc_choose_nextchannel(void)
 		truth |= 0x2;
 	if (pwm_c < pwm_blue)
 		truth |= 0x1;
-	
+
 	return pgm_read_word_near(ADC_TRUTHTABLE + truth);
 }
 
@@ -146,7 +147,7 @@ uint8_t adc_choose_nextchannel(void)
  * With brightness 0x20: 255mS
  * With brightness 0x80: 56mS
  * With brightness 0xFF: 26ms
- * 
+ *
  */
 void process_adc_reading(uint16_t adc)
 {

@@ -11,14 +11,31 @@
 
 void init_timer0(void);
 
-/* Interrupt vectors */
+/* 
+ * Interrupt vectors
+ * (sorted by priority) 
+ */
+
+// Pin change interrupt (CS changed)
+ISR(SIG_PIN_CHANGE)
+{
+  serial_cs(PINB & (1 << PB2));
+}
 
 // Timer0 overflow - Every 32us
 ISR(SIG_OVERFLOW0)
 {
 	brightness_pwm_loop();
 	adc_loop();
-	serial_tick();
+}
+
+// Serial buffer overflow (1 byte received)
+ISR(SIG_USI_OVERFLOW)
+{
+	serial_rx_byte(USIDR);
+	
+	// Clear the interrupt
+	USISR = (1 << USIOIF);
 }
 
 // ADC reading ready
@@ -29,15 +46,6 @@ ISR(SIG_ADC)
 	adc |= ADCH << 8;
 
 	process_adc_reading(adc);
-}
-
-// Serial buffer overflow (1 byte received)
-ISR(SIG_USI_OVERFLOW)
-{
-	serial_rx_byte(USIDR);
-	
-	// Clear the interrupt
-	USISR = (1 << USIOIF);
 }
 
 int main(void)

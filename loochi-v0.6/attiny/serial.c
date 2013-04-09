@@ -4,14 +4,9 @@
 #include "serial.h"
 
 /* Serial interface buffer */
-uint8_t usi_buffer[8];
+#define USI_BUF_LEN 8
+uint8_t usi_buffer[USI_BUF_LEN];
 uint8_t usi_counter;
-/* USI timer incremented by serial_tick() */
-uint8_t usi_timeout;
-#define USI_TIMEOUT_MAX 0xFF
-
-
-
 
 /*
  * Configure the Universal serial interface.
@@ -27,42 +22,36 @@ void init_serial()
 	/* Clear the interrupt flag before we start */
 	USISR = (1 << USIOIF);
 
-	/* We will use this var to detect gap in the transmission which indicates
-	 * the start of a new packet.
-	 * The first byte received will be the first  of a new packet.
-	 */
-	usi_timeout = 0xFF;
+
+  /* Enable pull-up on PB2 (Chip Select) */
+	PORTB |= (1 << PB2);
+	/* Enable Pin Change interrupt on PB2 change (PCINT10) */
+  GIMSK = 0;
+  GIMSK |= (1 << PCIE0);
+  PCMSK1 = 0;
+  PCMSK1 |= (1 << PCINT10);
+  
+  usi_counter = 0;
 }
 
-/* Called regularly to increment the serial timeout */
-void serial_tick()
+/* Called when the chip select is enabled/disabled to process a command */
+void serial_cs(uint8_t cs)
 {
-	// Increment usi_timeout without overflow
-	if (usi_timeout < USI_TIMEOUT_MAX)
-		usi_timeout++;
+  // Note: According to Wikipedia, CS is active low
+  if (cs == 0) { /* Start transmission */
+    usi_counter = 0;
+  }
+  else {
+		pwm_red = usi_buffer[0];
+		pwm_green = usi_buffer[1];
+		pwm_blue = usi_buffer[2];
+  }
 }
 
 /* Called when a byte is received by the USI */
 void serial_rx_byte(uint8_t byte)
 {
-	/* usi_timeout is used to reset the byte counter and re-synchronize with sender.
-	 * It is incremented every 3.2us by TimerO overflow. If we dont get any byte during
-	 * 3.2us*255 (=8ms), we will consider that the next byte is the beginning of a new sentence. 
-	 */
-	if (usi_timeout >= USI_TIMEOUT_MAX) 
-		usi_counter = 0;
-		
 	usi_buffer[usi_counter++] = byte;
-
-	if (usi_counter == 3) {
-		pwm_red = usi_buffer[0];
-		pwm_green = usi_buffer[1];
-		pwm_blue = usi_buffer[2];
-		usi_counter = 0;
-	}
-	
-	USIDR = usi_counter;
-
-	// Always reset the counter when we get a byte
-	usi_timeout = 0;
+  if (usi_counter > USI_BUF_LEN)
+    usi_counter = 0;
 }
