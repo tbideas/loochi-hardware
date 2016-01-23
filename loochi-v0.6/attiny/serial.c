@@ -41,6 +41,7 @@ void serial_cs(uint8_t cs)
   if (cs == 0) { /* Start transmission */
     usi_counter = 0;
   }
+  // End of transmission - Process the received bytes
   else {
 		pwm_red = usi_buffer[0];
 		pwm_green = usi_buffer[1];

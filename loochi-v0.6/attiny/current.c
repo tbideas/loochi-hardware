@@ -15,9 +15,9 @@
  * By changing the period of the PWM signals, we can control the average current flowing
  * through the LED.
  * 
- * The period of the PWM signals is defined by the speed of Timer1 clock (32Mhz here) multiplied
+ * The period of the PWM signals is defined by the speed of Timer1 clock (64Mhz here) multiplied
  * by OCR1C (counter TCNT1 is reset when it reachs OCR1C).
- *  With OCR1C default value 0xFF, the period is: t = 256 * 1/32M = 8us
+ *  With OCR1C default value 0xFF, the period is: t = 256 * 1/64M = 4us
  * 
  * The period of the Red, Green and Blue PWM are defined by the values in OCR1A, OCR1B, OCR1D.
  * Red => OC1A/PB1 Green => OC1B/PB3 Blue => -OC1D/PB4

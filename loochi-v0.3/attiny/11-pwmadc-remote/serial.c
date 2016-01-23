@@ -55,7 +55,7 @@ void serial_rx_byte(uint8_t byte)
 	usi_buffer[usi_counter++] = byte;
 
 	if (usi_counter == 1) {
-		USIDR = redadc & 0xFF;
+		USIDR = blueadc & 0xFF;
 	}
 	else if (usi_counter == 2) {
 		USIDR = blueadc >> 2;
@@ -66,7 +66,7 @@ void serial_rx_byte(uint8_t byte)
 		bluecpwm = usi_buffer[2];
 		usi_counter = 0;
 
-		USIDR = redadc >> 8;
+		USIDR = blueadc >> 8;
 	}
 
 	// Always reset the counter when we get a byte
